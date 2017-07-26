@@ -14,14 +14,12 @@ $(document).ready(function(){
 
   $(".search-input").keyup(function(){
    var input =  $(".search-input").val();
-   console.log("search Text: " + input)
    searchArr(input);
   });
 
 });
 
 function switchTabs(tab){
-  console.log(tab);
   switch(tab){
     case "Online":
     $(".fa-check").parents(".user-tab").fadeIn("slow");
@@ -43,7 +41,6 @@ function GetStreams(){
     var link = 'https://www.twitch.tv/'+streamer;
     $.getJSON("https://wind-bow.gomix.me/twitch-api/users/" + streamer + "?callback=?",function(json){
       var logo = json['logo'] + "?callback=?";
-      console.log(logo);
       $.getJSON("https://wind-bow.gomix.me/twitch-api/streams/"+streamer+"?callback=?",function(data){
         var stream = data.stream;
         if(stream != null){
@@ -68,10 +65,8 @@ function searchArr(test){
     text = text.replace(regex,"");
     if(text.match(test) != null && test != ""){
       var nthType = index + 1;
-      console.log("text: " + text + " test: " + test + " match: " + text.match(test))
       text =text.replace(test, function(x){ return '<mark>' + x + "</mark>"});
       $('.user-tab:nth-of-type('+ nthType +')').fadeIn();
-      console.log(index);
     }
     else{
       arrIndex.push(index + 1);
@@ -88,6 +83,4 @@ function searchArr(test){
       $('.user-tab:nth-of-type('+arrIndex[i]+')').fadeIn();
     }
   }
-
-  console.log(users);
 }
