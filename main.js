@@ -53,11 +53,11 @@ function GetStreams(){
           var status = stream.channel.status;
           var streamID = stream.id;
           link+= '/'+streamID;
-          $(".user-container").append("<a href="+link+" class='user-tab' target='_blank'><img class='user-img' src="+logo+"/><div class='user-info'><h5 id='userName'>"+streamer+"</h5><p>"+status+"</p><i class='fa fa-check icon-check'></i></div></a>");
+          $(".user-container").append("<a href="+link+" class='user-tab' target='_blank'><img class='user-img' src="+logo+"/><div class='user-info'><h5 id='userName'>"+streamer+"</h5><p>"+status+"</p><i title='Online' class='fa fa-check icon-check'></i></div></a>");
           $(".fa-check").css("color","green");
         }
         else {
-          $(".user-container").append("<a href="+link+" class='user-tab' target='_blank'><img class='user-img' src="+logo+" alt='profile_image'/><div class='user-info'><h5 id='userName'>"+streamer+"</h5><p>Offline</p><i class='fa fa-exclamation icon-check'></i></div></a>");
+          $(".user-container").append("<a href="+link+" class='user-tab' target='_blank'><img class='user-img' src="+logo+" alt='profile_image'/><div class='user-info'><h5 id='userName'>"+streamer+"</h5><p>Offline</p><i title='Offline' class='fa fa-exclamation icon-check'></i></div></a>");
           $(".fa-exclamation").css("color","red");
         }
       });

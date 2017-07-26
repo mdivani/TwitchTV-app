@@ -84,12 +84,15 @@ body {
 }
 
 .search-input {
-  width:100%;
+  width:90%;
   text-align: left;
   padding-left: 10px;
   border-radius: 15px;
   border:none;
   outline: none;
+  position: absolute;
+  bottom: 3px;
+  left:1px;
 }
 
 mark {
@@ -133,6 +136,7 @@ mark {
   width:80px;
   height:80px;
   border-radius:40px;
+  margin-left:5px;
   border:2px solid #9c5eeb;
 }
 
