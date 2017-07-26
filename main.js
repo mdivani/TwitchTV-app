@@ -17,7 +17,13 @@ $(document).ready(function(){
    searchArr(input);
   });
 
+  $('.search-icon').click(function(){
+    console.log("clicked X");
+   $(".search-input").val('');
+   searchArr('');
+  });
 });
+
 
 function switchTabs(tab){
   switch(tab){
@@ -63,9 +69,9 @@ function searchArr(test){
   var arrIndex = [];
     var users = $('.user-info').children('#userName').html(function(index, text){
     text = text.replace(regex,"");
-    if(text.match(test) != null && test != ""){
+    if(text.match(new RegExp(test,'i')) != null && test != ""){
       var nthType = index + 1;
-      text =text.replace(test, function(x){ return '<mark>' + x + "</mark>"});
+      text =text.replace(new RegExp(test,'i'), function(x){ return '<mark>' + x + "</mark>"});
       $('.user-tab:nth-of-type('+ nthType +')').fadeIn();
     }
     else{
@@ -76,11 +82,13 @@ function searchArr(test){
   if(test != ""){
     for(var i = 0; i < arrIndex.length; i++){
       $('.user-tab:nth-of-type('+arrIndex[i]+')').fadeOut();
+      $('.search-icon').removeClass('fa-search').addClass('fa-times');
     }
   }
   else {
     for(var i = 0; i < arrIndex.length; i++){
       $('.user-tab:nth-of-type('+arrIndex[i]+')').fadeIn();
+      $('.search-icon').removeClass('fa-times').addClass('fa-search');
     }
   }
 }
