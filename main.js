@@ -1,5 +1,5 @@
 var streamersArr = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];
-var defLogo = "https://maxcdn.icons8.com/Share/icon/Users//user1600.png";
+ var regex = /(&nbsp;|<([^>]+)>)/ig;
 
 $(document).ready(function(){
 
@@ -13,9 +13,9 @@ $(document).ready(function(){
   });
 
   $(".search-input").keyup(function(){
-   var text =  $(".search-input").val();
-   console.log("search Text: " + text)
-   search(text);
+   var input =  $(".search-input").val();
+   console.log("search Text: " + input)
+   searchArr(input);
   });
 
 });
@@ -62,18 +62,32 @@ function GetStreams(){
   });
 }
 
-function search(text) {
-  if(text != "" && text != " "){
-  var users = $(".user-info").children("h5");
-  for(var i = 0; i  < users.length; i++){
-    var user = users[i];
-    if(user.value.match(text)){
-      console.log("matched: " + user + " Text: " + text);
-      users[i].innerHTML = user.replace(text,function(x){return x.innerHTML = '<mark>' + x + '</mark>'});
+function searchArr(test){
+  var arrIndex = [];
+    var users = $('.user-info').children('#userName').html(function(index, text){
+    text = text.replace(regex,"");
+    if(text.match(test) != null && test != ""){
+      var nthType = index + 1;
+      console.log("text: " + text + " test: " + test + " match: " + text.match(test))
+      text =text.replace(test, function(x){ return '<mark>' + x + "</mark>"});
+      $('.user-tab:nth-of-type('+ nthType +')').fadeIn();
+      console.log(index);
     }
-    else {
-      console.log("Not matched: " + user);
+    else{
+      arrIndex.push(index + 1);
+    }
+  return text;
+  });
+  if(test != ""){
+    for(var i = 0; i < arrIndex.length; i++){
+      $('.user-tab:nth-of-type('+arrIndex[i]+')').fadeOut();
     }
   }
-}
+  else {
+    for(var i = 0; i < arrIndex.length; i++){
+      $('.user-tab:nth-of-type('+arrIndex[i]+')').fadeIn();
+    }
+  }
+
+  console.log(users);
 }
